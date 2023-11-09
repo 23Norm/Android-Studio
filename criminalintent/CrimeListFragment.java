@@ -1,5 +1,6 @@
 package com.example.criminalintent;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +31,7 @@ public class CrimeListFragment extends Fragment {
         return view;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private void updateUI() {
         CrimeLab crimeLab = CrimeLab.get(getActivity());
         List<Crime> crimes = crimeLab.getCrimes();
@@ -62,6 +64,14 @@ public class CrimeListFragment extends Fragment {
             mCrime = crime;
             mTitleTextView.setText(mCrime.getTitle());
             mDateTextView.setText(mCrime.getFormattedDate());
+
+            if (mCrime.requiresPolice()) {
+                View policeLayout = itemView.findViewById(R.id.layout_for_crimes_requiring_police);
+                policeLayout.setVisibility(View.VISIBLE);
+            } else {
+                View policeLayout = itemView.findViewById(R.id.layout_for_crimes_requiring_police);
+                policeLayout.setVisibility(View.GONE);
+            }
         }
 
         @Override
