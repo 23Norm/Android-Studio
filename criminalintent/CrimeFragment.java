@@ -46,7 +46,13 @@ public class CrimeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_crime, container, false);
+        View v ;
+
+        if (mCrime.requiresPolice()) {
+            v = inflater.inflate(R.layout.fragment_crime_police, container, false);
+        } else {
+            v = inflater.inflate(R.layout.fragment_crime, container, false);
+        }
 
         mTitleField = (EditText) v.findViewById(R.id.crime_title);
         mTitleField.setText(mCrime.getTitle());
