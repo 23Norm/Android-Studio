@@ -48,11 +48,7 @@ public class CrimeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v ;
 
-        if (mCrime.requiresPolice()) {
-            v = inflater.inflate(R.layout.fragment_crime_police, container, false);
-        } else {
-            v = inflater.inflate(R.layout.fragment_crime, container, false);
-        }
+        v = inflater.inflate(R.layout.fragment_crime, container, false);
 
         mTitleField = (EditText) v.findViewById(R.id.crime_title);
         mTitleField.setText(mCrime.getTitle());
@@ -73,19 +69,14 @@ public class CrimeFragment extends Fragment {
             }
         });
 
-        mDateButton = (Button) v.findViewById(R.id.crime_date);
+        Button mDateButton = v.findViewById(R.id.crime_date);
+        mTitleField.setText(mCrime.getTitle());
         mDateButton.setText(mCrime.getFormattedDate());
         mDateButton.setEnabled(false);
 
-        mSolvedCheckbox = (CheckBox) v.findViewById(R.id.crime_solved);
+        CheckBox mSolvedCheckbox = v.findViewById(R.id.crime_solved);
         mSolvedCheckbox.setChecked(mCrime.isSolved());
-        mSolvedCheckbox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView,
-                                         boolean isChecked) {
-                mCrime.setSolved(isChecked);
-            }
-        });
+        mSolvedCheckbox.setOnCheckedChangeListener((buttonView, isChecked) -> mCrime.setSolved(isChecked));
 
         return v;
     }
