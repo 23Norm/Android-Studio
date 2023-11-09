@@ -13,6 +13,9 @@ public class Crime {
     private boolean mSolved;
     private final String formattedDate;
 
+    private boolean mRequiresPolice;
+
+
     public Crime() {
         mId = UUID.randomUUID();
         mDate = new Date();
@@ -20,6 +23,14 @@ public class Crime {
         DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.FULL);
         formattedDate = dateFormat.format(mDate);
 
+    }
+
+    public boolean requiresPolice() {
+        return mRequiresPolice;
+    }
+
+    public void setRequiresPolice(boolean requiresPolice) {
+        mRequiresPolice = requiresPolice;
     }
 
     public String getFormattedDate() {
