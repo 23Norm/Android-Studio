@@ -66,14 +66,15 @@ public class CrimeListFragment extends Fragment {
             mCrime = crime;
             mTitleTextView.setText(mCrime.getTitle());
             mDateTextView.setText(mCrime.getFormattedDate());
-            mSolvedImageView.setVisibility(crime.isSolved() ? View.VISIBLE : View.GONE);
-
-            if (mCrime.requiresPolice()) {
+            
+             if (crime.requiresPolice()) {
                 View policeLayout = itemView.findViewById(R.id.layout_for_crimes_requiring_police);
                 policeLayout.setVisibility(View.VISIBLE);
-            } else {
+                mSolvedImageView.setVisibility(View.GONE);
+            } else{
                 View policeLayout = itemView.findViewById(R.id.layout_for_crimes_requiring_police);
                 policeLayout.setVisibility(View.GONE);
+                mSolvedImageView.setVisibility(View.VISIBLE);
             }
         }
 
