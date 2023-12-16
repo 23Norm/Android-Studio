@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.CrimeIntent"
+        android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
             android:name=".CrimeListActivity"
@@ -22,7 +22,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".CrimePagerActivity" />
+        <activity android:name=".CrimePagerActivity"
+            android:parentActivityName=".CrimeListActivity"
+            android:launchMode="singleTop"/>
         <activity android:name=".DatePickerActivity" />
         <activity android:name=".TimePickerActivity" />
     </application>
